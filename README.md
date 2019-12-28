@@ -1,68 +1,23 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Important Note:
 
-## Available Scripts
+I was not able to access the API. I emailed them to get the API ID but they refused. So, I was not able to fetch anything or add any Unit tests for the JS code. I will attach the email screenshots. So, I only worked on UI part only. 
 
-In the project directory, you can run:
+Fetching data:
 
-### `npm start`
+useEffect((artists()) => {}, []);
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+const artists = async () => {
+  const response = await fetch(url);
+  const data = await response.json();
+  console.log(data);
+}
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Cache:
 
-### `npm test`
+var cahedData = JSON.parse(localStorage.getItem("artists")) || []; //geting from localstorage
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+let [artists, setArtists] = useState(cahcedData); //updating current state using cached data
 
-### `npm run build`
+Deploy Strategy:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Blue/Green would be the most likely the best deployment strategy. After testing the system inhouse alongside the QA team, we can deploy the version B (new) of our software alongsie the version A (current). We will then switch traffic to version B. This will ensure no downtime. Hence, people using our webapp to get updates on events/artists will be able to use the app while at the sametime we deploy the new version. 
