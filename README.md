@@ -24,3 +24,4 @@ Blue/Green would be the most likely the best deployment strategy. After testing 
 
 
 p.s I am travelling otherwise the UI part was doable in a day.
+
